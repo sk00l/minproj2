@@ -5,21 +5,19 @@ import Rating from '../components/Rating'
 import axios from 'axios'
 // import products from '../products'
 
-const ProductScreen = ({ match }) => {
-  // const { id } = useParams()
-  // const product = products.find((p) => p._id === id)
+const ProductScreen = () => {
+  const { id } = useParams()
+  const [product, setProduct] = useState({})
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const { data } = await axios.get(`/api/products/${match.parms.id}`)
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${id}`)
 
       setProduct(data)
     }
 
     fetchProduct()
-  }, [])
-
-  const [product, setProduct] = useState({})
+  }, [id])
 
   return (
     <>
