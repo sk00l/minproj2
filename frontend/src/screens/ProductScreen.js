@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
@@ -8,10 +8,11 @@ import Loader from '../components/Loader'
 import { listProductDetails } from '../actions/productActions'
 
 // import products from '../products'
-const ProductScreen = ({ history }) => {
-  const [qty, setQty] = useState(0)
-
+const ProductScreen = () => {
   const { id } = useParams()
+  const navigate = useNavigate()
+  const [qty, setQty] = useState(1)
+
   const dispatch = useDispatch()
   // const [product, setProduct] = useState({})
 
@@ -20,6 +21,7 @@ const ProductScreen = ({ history }) => {
 
   useEffect(() => {
     dispatch(listProductDetails(id))
+
     // const fetchProduct = async () => {
     //   const { data } = await axios.get(`/api/products/${id}`)
     //   setProduct(data)
@@ -28,7 +30,7 @@ const ProductScreen = ({ history }) => {
   }, [dispatch, id])
 
   const addToCartHandler = () => {
-    history.push(`/cart/${id}?qty=${qty}`)
+    navigate(`/cart/${id}?qty=${qty}`)
   }
 
   return (
@@ -52,7 +54,7 @@ const ProductScreen = ({ history }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Rating
-                  value={product.rating}
+                  value={+product.rating}
                   text={`${product.numReviews} reviews`}
                 />
               </ListGroup.Item>
