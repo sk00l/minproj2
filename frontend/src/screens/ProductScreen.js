@@ -9,7 +9,7 @@ import { listProductDetails } from '../actions/productActions'
 
 // import products from '../products'
 const ProductScreen = () => {
-  const { id } = useParams()
+  const params = useParams()
   const navigate = useNavigate()
   const [qty, setQty] = useState(1)
 
@@ -20,17 +20,17 @@ const ProductScreen = () => {
   const { loading, error, product } = productDetails
 
   useEffect(() => {
-    dispatch(listProductDetails(id))
+    dispatch(listProductDetails(params.id))
 
     // const fetchProduct = async () => {
     //   const { data } = await axios.get(`/api/products/${id}`)
     //   setProduct(data)
     // }
     // fetchProduct()
-  }, [dispatch, id])
+  }, [dispatch, params.id])
 
   const addToCartHandler = () => {
-    navigate(`/cart/${id}?qty=${qty}`)
+    navigate(`/cart/${params.id}?qty=${qty}`)
   }
 
   return (
@@ -90,8 +90,7 @@ const ProductScreen = () => {
                     <Row>
                       <Col>Qty</Col>
                       <Col>
-                        <Form.Control
-                          as='select'
+                        <Form.Select
                           value={qty}
                           onChange={(e) => setQty(e.target.value)}
                         >
@@ -100,7 +99,7 @@ const ProductScreen = () => {
                               {x + 1}
                             </option>
                           ))}
-                        </Form.Control>
+                        </Form.Select>
                       </Col>
                     </Row>
                   </ListGroup.Item>

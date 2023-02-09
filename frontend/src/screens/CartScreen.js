@@ -3,15 +3,17 @@ import { Link, useParams, useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
-import { addToCart } from '../actions/cartActions'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 
 const CartScreen = () => {
-  const navigate = useNavigate()
+  const params = useParams()
   const location = useLocation()
-  const { id } = useParams()
-  const productId = id
-  const qty = location.search ? Number(location.search.split('=')[1]) : 1
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const productId = params.id
+
+  const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
   const cart = useSelector((state) => state.cart)
   const { cartItems } = cart
@@ -23,7 +25,7 @@ const CartScreen = () => {
   }, [dispatch, productId, qty])
 
   const removeFromCartHandler = (id) => {
-    console.log('first')
+    dispatch(removeFromCart(id))
   }
 
   const checkoutHandler = () => {
@@ -51,8 +53,7 @@ const CartScreen = () => {
                   </Col>
                   <Col md={2}>${item.price}</Col>
                   <Col md={2}>
-                    <Form.Control
-                      as='select'
+                    <Form.Select
                       value={item.qty}
                       onChange={(e) =>
                         dispatch(
@@ -65,7 +66,7 @@ const CartScreen = () => {
                           {x + 1}
                         </option>
                       ))}
-                    </Form.Control>
+                    </Form.Select>
                   </Col>
                   <Col md={2}>
                     <Button
@@ -92,7 +93,7 @@ const CartScreen = () => {
               </h2>
               $
               {cartItems
-                .reduce((acc, item) => acc + item.qty * item.price, 0)
+                .reduce((acc, item) => (acc = item.qty * item.price), 0)
                 .toFixed(2)}
             </ListGroup.Item>
             <ListGroup.Item>
