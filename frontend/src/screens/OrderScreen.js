@@ -16,7 +16,7 @@ import {
   ORDER_DELIVER_RESET,
 } from '../constants/orderConstants'
 
-const OrderScreen = ({ history }) => {
+const OrderScreen = () => {
   const params = useParams()
   const navigate = useNavigate()
   const orderId = params.id
@@ -76,7 +76,7 @@ const OrderScreen = ({ history }) => {
         setSdkReady(true)
       }
     }
-  }, [dispatch, orderId, successPay, successDeliver, order])
+  }, [dispatch, orderId, successPay, successDeliver, order, userInfo, navigate])
 
   const successPaymentHandler = (paymentResult) => {
     console.log(paymentResult)

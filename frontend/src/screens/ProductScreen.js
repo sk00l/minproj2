@@ -44,7 +44,7 @@ const ProductScreen = () => {
       dispatch(listProductDetails(params.id))
       dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
     }
-  }, [dispatch, params.id, successProductReview])
+  }, [dispatch, params.id, successProductReview, product])
 
   const addToCartHandler = () => {
     navigate(`/cart/${params.id}?qty=${qty}`)
