@@ -16,7 +16,7 @@ const SearchBox = () => {
   }
 
   return (
-    <Form onSubmit={submitHandler} inline className='d-flex'>
+    <Form onSubmit={submitHandler} inline='true' className='d-flex'>
       <Form.Control
         type='text'
         name='q'
