@@ -25,19 +25,19 @@ const productSchema = mongoose.Schema(
     },
     name: {
       type: String,
-      required: true,
+      required: false,
     },
     image: {
       type: String,
-      required: true,
+      required: false,
     },
     brand: {
       type: String,
-      required: true,
+      required: false,
     },
     category: {
       type: String,
-      required: true,
+      required: false,
     },
     description: {
       type: String,
@@ -56,7 +56,7 @@ const productSchema = mongoose.Schema(
     },
     price: {
       type: Number,
-      required: true,
+      required: false,
       default: 0,
     },
     countInStock: {
