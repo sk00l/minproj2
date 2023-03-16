@@ -12,7 +12,7 @@ It's a minor project for college
 ## Instruction to run this project
 
 1. Clone this repo
-2. In root directory (where the back and front folder is)
+2. In root directory (where the backend and frontend folder is)
 
 
 ```bash
