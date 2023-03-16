@@ -21,7 +21,7 @@ It's a minor project for college
 3. Now change the directory to frontend
 ```bash
  cd frontend
- npm install --legacy-peer-deps (installs all the required dependencies for backend)
+ npm install --legacy-peer-deps (installs all the required dependencies for frontend)
  ```
  4. You need the the .env ( environment variables to run this project )
  It should look like this
