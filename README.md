@@ -29,7 +29,7 @@ It's a minor project for college
  NODE_ENV = development
 PORT = 5000
 MONGO_URI = ( Your mongoDB URI)
-JWT_SECRET = (JSONWebToken Secret Token)
+JWT_SECRET = (JSONWebToken Secret key)
 PAYPAL_CLIENT_ID = (paypal client id for transaction)
  ```
 
